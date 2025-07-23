@@ -45,13 +45,12 @@ jobs:
         continue-on-error: true  # 调试步骤不影响主流程
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4  # 使用最新版本
+        uses: actions/configure-pages@v5.0.0  # 使用最新版本
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4.6.2
         with:
           path: './dist/build/h5'  # 确保与实际构建路径一致
 
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v3  # 升级到最新版本
+        uses: actions/deploy-pages@v4.0.5  # 升级到最新版本
