@@ -48,7 +48,7 @@ jobs:
         uses: actions/configure-pages@v5.0.0  # 使用最新版本
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-pages-artifact@v3
         with:
           name: 'github-pages'
           path: './dist/build/h5'  # 确保与实际构建路径一致
