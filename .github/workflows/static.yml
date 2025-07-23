@@ -1,0 +1,57 @@
+name: Deploy static content to Pages
+
+on:
+  push:
+    branches: ['master']  # 触发部署的分支
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build:h5
+        # 构建后检查产物路径是否存在（用于调试）
+        continue-on-error: false  # 构建失败则终止
+
+      - name: List build files (debug)
+        run: |
+          echo "查看构建产物目录结构："
+          ls -la ./dist/build/h5  # 确认文件是否存在
+        continue-on-error: true  # 调试步骤不影响主流程
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5.0.0  # 使用最新版本
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: 'github-pages'
+          path: './dist/build/h5'  # 确保与实际构建路径一致
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4.0.5  # 升级到最新版本
