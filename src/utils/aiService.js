@@ -1,7 +1,6 @@
 // AI服务类
 export const apiUrl = "https://openrouter.ai/api/v1/chat/completions";
-export const openRouterApiKey =
-    "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";
+export const openRouterApiKey = "";
 
 class AIService {
     constructor() {

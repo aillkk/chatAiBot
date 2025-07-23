@@ -152,7 +152,7 @@ import aiService from "@/utils/aiService.js";
 export default {
     data() {
         return {
-            safeAreaTop: 0,
+            safeAreaTop: 10,
             messages: [],
             inputMessage: "",
             isLoading: false,
@@ -176,8 +176,7 @@ export default {
         this.loadSettings();
         const sysInfo = uni.getSystemInfoSync();
         // safeArea.top 是安全区顶部距离
-        this.safeAreaTop = sysInfo.safeArea ? sysInfo.safeArea.top : 0;
-        console.log("safeAreaTop", this.safeAreaTop);
+        this.safeAreaTop = sysInfo.safeArea.top ? sysInfo.safeArea.top : 10;
     },
     methods: {
         // 发送消息

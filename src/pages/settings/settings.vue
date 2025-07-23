@@ -226,15 +226,14 @@ export default {
             },
             retentionOptions: ["7天", "30天", "90天", "永久"],
             retentionIndex: 1,
-            safeAreaTop: 0,
+            safeAreaTop: 10,
             headerHeight: 0,
         };
     },
     onLoad() {
         const sysInfo = uni.getSystemInfoSync();
         // safeArea.top 是安全区顶部距离
-        this.safeAreaTop = sysInfo.safeArea ? sysInfo.safeArea.top : 0;
-        console.log("safeAreaTop", this.safeAreaTop);
+        this.safeAreaTop = sysInfo.safeArea.top ? sysInfo.safeArea.top : 10;
         this.loadSettings();
         const idx = this.modelOptions.findIndex(
             (opt) => opt.id === this.settings.model

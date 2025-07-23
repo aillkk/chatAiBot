@@ -56,8 +56,7 @@
         "domain": "",
         "routerMode": "hash",
         "devServer": {
-            "port": 8080,
-            "disableHostCheck": true
+            "port": 8080
         }
     },
     "mp-weixin": {
