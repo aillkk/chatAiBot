@@ -50,6 +50,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4.6.2
         with:
+          name: 'github-pages'
           path: './dist/build/h5'  # 确保与实际构建路径一致
 
       - name: Deploy to GitHub Pages
